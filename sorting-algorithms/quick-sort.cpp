@@ -14,12 +14,12 @@ void quickSortHelper(std::vector<int>& nums, int lower, int upper)
     {
         while(nums[lower] <= pivot && lower < upper) lower++;
 
-        while(nums[upper] > pivot && lower <= upper) upper++;
+        while(nums[upper] > pivot && lower <= upper) upper--;
 
-        if(lower < upper) std::swap(arr, upper, lower);
+        if(lower < upper) std::swap(nums[upper], nums[lower]);
     }
 
-    std::swap(nums, upper, lower);
+    std::swap(nums[upper], nums[start]);
     quickSortHelper(nums, start, upper-1);
     quickSortHelper(nums, upper+1, stop);
 }
