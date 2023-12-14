@@ -2,6 +2,11 @@
 #include <vector>
 
 /*
+This is bubble sort which is a sorting algorithm that is O(n^2) time complexity and uses
+O(1) space complexity.
+*/
+
+/*
 Helper method to check if a number is greater than the next number
 @param int num1 the first number used to compare
 int num2 the second number used to compare
