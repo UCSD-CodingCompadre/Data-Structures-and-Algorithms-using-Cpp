@@ -166,7 +166,7 @@ struct SingleLinkedList
         {
 
             // Check if we have the correct index
-            if(currentIndex == index - 1);
+            if(currentIndex == index - 1)
             {
                 
                 // Connect the new node using the current node's next node
@@ -248,6 +248,9 @@ struct SingleLinkedList
 
             // Check if the val exists
             if(currentNode->val == val) return true;
+
+            // Assign the new current node
+            currentNode = currentNode->next;
         }
 
         // Return false
