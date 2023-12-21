@@ -8,7 +8,7 @@ This is a queue that follows a First-In-First-Out sorting order.
 int main()
 {
 
-    // Hold an example stacks
+    // Hold an example queue
     std::queue<int> MyQueue;
 
     // Push elements
