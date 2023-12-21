@@ -18,6 +18,6 @@ int main()
     std::cout << "Maximum int: " << INT_MAX << std::endl;
     std::cout << "Maximum long long: " << LLONG_MAX << std::endl;
 
-    std::cout << "Minimum int: " << INT_MAX << std::endl;
-    std::cout << "Minimum long long: " << LLONG_MAX << std::endl;
+    std::cout << "Minimum int: " << INT_MIN << std::endl;
+    std::cout << "Minimum long long: " << LLONG_MIN<< std::endl;
 }
