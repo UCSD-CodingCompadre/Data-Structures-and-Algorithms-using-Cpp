@@ -2,6 +2,10 @@
 
 /*
 A tatic that is useful with number is binary operations. 
+Left bit shift is << and will shift the bits to the left 111 << is now 1110
+Right bit shift is >> and will shift the bits to the right 111 >> is now 11
+And is & and will return 1 if the bits are the same
+Xor is ^ which will return 1 for two bits that are different
 The use of Xor is shown in Easy Leetcode problem Single Number 
 */
 
