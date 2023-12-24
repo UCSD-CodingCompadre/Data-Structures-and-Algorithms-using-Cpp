@@ -1,6 +1,11 @@
 #include <iostream>
 #include <vector>
 
+/*
+This is Binary Search a tatic used to find a certain element in an ascending data structure. 
+You can use the sort function from the <algorithm> library to sort a data structure like a vector.
+*/
+
 bool binarySearchIterative(std::vector<int>& data, int value)
 {
 
