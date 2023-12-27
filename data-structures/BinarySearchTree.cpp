@@ -48,41 +48,75 @@ struct BinarySearchTree
                 // Check if we have a duplicate
                 if(currentNode->val == val) return false;
 
-                // Check if we move right
-                else if(currentNode->val < val)
+                // Else check if we traversing right
+                else if(val > currentNode->val)
                 {
 
-                    // Check if we can add the node
+                    // Check if we have an empty right child
                     if(currentNode->right == nullptr)
                     {
 
-                        // Add the node
+                        // Add the node a new right child
                         currentNode->right = new TreeNode(val);
 
-                        // Break from the loop
+                        // Break
                         break;
                     }
 
-                    // Else iterate to the right
+                    // Else check if are replacing this subtree node
+                    else if(val < currentNode->right->val)
+                    {
+
+                        // Hold the subtree
+                        TreeNode* rightSubtree = currentNode->right;
+
+                        // Add the new node
+                        currentNode->right = new TreeNode(val);
+
+                        // Add the subtree
+                        currentNode->right->right = rightSubtree;
+
+                        // Break
+                        break;
+                    }
+
+                    // Else we just traverse right
                     else currentNode = currentNode->right;
                 }
 
-                // Else we move to the right
+                // Else we are traversing left
                 else
                 {
 
-                    // Check if we can add the node
-                    if(currentNode->left == nullptr)
+                    // Check if we have an empty left child
+                    if(currentNode->left)
                     {
 
-                        // Add the node
+                        // Add the node to the left child
                         currentNode->left = new TreeNode(val);
 
-                        // Break from the loop
+                        // Break
                         break;
                     }
 
-                    // Else iterate to the left
+                    // Else check if are replacing this subtree node
+                    else if(val > currentNode->left->val)
+                    {
+
+                        // Hold the subtree
+                        TreeNode* leftSubtree = currentNode->left;
+
+                        // Add the new node
+                        currentNode->left = new TreeNode(val);
+
+                        // Add the subtree
+                        currentNode->left->left = leftSubtree;
+
+                        // Break
+                        break;
+                    }
+
+                    // Else we just traverse left
                     else currentNode = currentNode->left;
                 }
             }
@@ -94,4 +128,72 @@ struct BinarySearchTree
         // Return true
         return true;
     }
+
+    /*
+    Shortcut for traversals
+    Pre VLR
+    In LVR
+    Post LRV
+    */
+
+   void printPreOrder(TreeNode* node)
+   {
+
+        // Check if node is nullptr
+        if(node == nullptr) return;
+
+        // Print visited node
+        std::cout << node->val << " ";
+
+        // Traverse left
+        printPreOrder(node->left);
+
+        // Traverse right
+        printPreOrder(node->right);
+   }
+
+   void printInOrder(TreeNode* node)
+   {
+
+        // Check if node is nullptr
+        if(node == nullptr) return;
+
+        // Traverse left
+        printInOrder(node->left);
+
+        // Print visited node
+        std::cout << node->val << " ";
+
+        // Traverse right
+        printInOrder(node->right);
+   }
+
+   void printPostOrder(TreeNode* node)
+   {
+
+        // Check if node is nullptr
+        if(node == nullptr) return;
+
+        //Traverse left
+        printPostOrder(node->left);
+
+        // Traverse right
+        printPostOrder(node->right);
+
+        // Print visted node
+        std::cout << node->val << " ";
+   }
 };
+
+int main()
+{
+
+    BinarySearchTree* MyBST = new BinarySearchTree();
+
+    MyBST->add(6);
+    MyBST->add(3);
+    MyBST->add(1);
+    MyBST->add(2);
+
+    MyBST->printPreOrder(MyBST->root);
+}

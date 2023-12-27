@@ -22,11 +22,18 @@ struct SinglyLinkedListNode
 This is SinglyLinkedList that is a collection of Nodes that point to the next.
 It has a start and end point known as the head and tail respectivly. 
 */
-struct SingleLinkedList
+struct SinglyLinkedList
 {
     int size;
     SinglyLinkedListNode* head;
     SinglyLinkedListNode* tail;
+
+    SinglyLinkedList()
+    {
+        this->size = 0;
+        this->head = nullptr;
+        this->tail = nullptr;
+    }
 
     int get(int index) 
     {
@@ -257,3 +264,11 @@ struct SingleLinkedList
         return false;
     }
 };
+
+int main()
+{
+    SinglyLinkedList* MySinglyLinkedList = new SinglyLinkedList();
+
+    MySinglyLinkedList->addAtHead(1);
+    MySinglyLinkedList->addAtTail(2);
+}
