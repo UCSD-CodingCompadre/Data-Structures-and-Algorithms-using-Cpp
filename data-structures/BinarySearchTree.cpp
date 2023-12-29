@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 
 struct TreeNode 
 {
@@ -63,25 +64,8 @@ struct BinarySearchTree
                         break;
                     }
 
-                    // Else check if are replacing this subtree node
-                    else if(val < currentNode->right->val)
-                    {
-
-                        // Hold the subtree
-                        TreeNode* rightSubtree = currentNode->right;
-
-                        // Add the new node
-                        currentNode->right = new TreeNode(val);
-
-                        // Add the subtree
-                        currentNode->right->right = rightSubtree;
-
-                        // Break
-                        break;
-                    }
-
                     // Else we just traverse right
-                    else currentNode = currentNode->right;
+                    currentNode = currentNode->right;
                 }
 
                 // Else we are traversing left
@@ -89,7 +73,7 @@ struct BinarySearchTree
                 {
 
                     // Check if we have an empty left child
-                    if(currentNode->left)
+                    if(currentNode->left == nullptr) 
                     {
 
                         // Add the node to the left child
@@ -99,25 +83,8 @@ struct BinarySearchTree
                         break;
                     }
 
-                    // Else check if are replacing this subtree node
-                    else if(val > currentNode->left->val)
-                    {
-
-                        // Hold the subtree
-                        TreeNode* leftSubtree = currentNode->left;
-
-                        // Add the new node
-                        currentNode->left = new TreeNode(val);
-
-                        // Add the subtree
-                        currentNode->left->left = leftSubtree;
-
-                        // Break
-                        break;
-                    }
-
                     // Else we just traverse left
-                    else currentNode = currentNode->left;
+                    currentNode = currentNode->left;
                 }
             }
         }
@@ -136,8 +103,13 @@ struct BinarySearchTree
     Post LRV
     */
 
-   void printPreOrder(TreeNode* node)
-   {
+   /*
+   Print the preorder traversal of a binary search tree
+   @param TreeNode* node a pointer to the current visted node
+   @return void
+   */
+    void printPreOrder(TreeNode* node)
+    {
 
         // Check if node is nullptr
         if(node == nullptr) return;
@@ -150,10 +122,15 @@ struct BinarySearchTree
 
         // Traverse right
         printPreOrder(node->right);
-   }
+    }
 
-   void printInOrder(TreeNode* node)
-   {
+    /*
+    Print the inorder traversal of a binary search tree
+    @param TreeNode* node a pointer to the current visted node
+    @return void
+    */
+    void printInOrder(TreeNode* node)
+    {
 
         // Check if node is nullptr
         if(node == nullptr) return;
@@ -166,10 +143,15 @@ struct BinarySearchTree
 
         // Traverse right
         printInOrder(node->right);
-   }
+    }
 
-   void printPostOrder(TreeNode* node)
-   {
+    /*
+    Print the postorder traversal of a binary search tree
+    @param TreeNode* node a pointer to the current visted node
+    @return void
+    */
+    void printPostOrder(TreeNode* node)
+    {
 
         // Check if node is nullptr
         if(node == nullptr) return;
@@ -182,7 +164,59 @@ struct BinarySearchTree
 
         // Print visted node
         std::cout << node->val << " ";
-   }
+    }
+
+    /*
+    Print the level order traversal of a binary search tree
+    @param none
+    @return void
+    */
+    void printLevelOrder()
+    {
+
+        // Check if we have no root
+        if(this->root == nullptr) return;
+
+        // Create a queue for the TreeNodes
+        std::queue<TreeNode*> MyQueue; 
+
+        // Push the head of the Binary Search Tree
+        MyQueue.push(root);
+
+        // Loop until the queue is empty
+        while(!MyQueue.empty())
+        {
+
+            // Hold the amount of nodes in the level
+            int levelSize = MyQueue.size();
+
+            // Loop until the levelSize is 0
+            while(levelSize > 0)
+            {
+
+                // Hold the element from the queue
+                TreeNode* MyNode = MyQueue.front();
+
+                // Pop the element from the queue
+                MyQueue.pop();
+
+                // Check if the node has a left child
+                if(MyNode->left != nullptr) MyQueue.push(MyNode->left);
+
+                // Check if the node has a right child
+                if(MyNode->right != nullptr) MyQueue.push(MyNode->right);
+
+                // Print the node
+                std::cout << MyNode->val << " ";
+
+                // Decrement the levelSize
+                levelSize--;
+            }
+
+            // Print a new line
+            std::cout << std::endl;
+        }
+    }
 };
 
 int main()
@@ -193,7 +227,7 @@ int main()
     MyBST->add(6);
     MyBST->add(3);
     MyBST->add(1);
-    MyBST->add(2);
+    MyBST->add(4);
 
-    MyBST->printPreOrder(MyBST->root);
+    MyBST->printLevelOrder();
 }
