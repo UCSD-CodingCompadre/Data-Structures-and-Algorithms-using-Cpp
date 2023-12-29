@@ -28,6 +28,9 @@ struct SinglyLinkedList
     SinglyLinkedListNode* head;
     SinglyLinkedListNode* tail;
 
+    /*
+    Default constructor of the SinglyLinkedList
+    */
     SinglyLinkedList()
     {
         this->size = 0;
@@ -35,6 +38,11 @@ struct SinglyLinkedList
         this->tail = nullptr;
     }
 
+    /*
+    Retrieve the value of a linked list node at the given index
+    @param int index the index of the node 
+    @return int the value of the node
+    */
     int get(int index) 
     {
 
@@ -81,6 +89,11 @@ struct SinglyLinkedList
        return currentNode->val;
     }
     
+    /*
+    Add a node to the head of the SinglyLinkedList
+    @param int val the value of the new node to add
+    @return void
+    */
     void addAtHead(int val) 
     {
 
@@ -114,6 +127,11 @@ struct SinglyLinkedList
         size++;
     }
     
+    /*
+    Add at the tail of the SinglyLinkedList
+    @param int val the value of the new node to add
+    @return void
+    */
     void addAtTail(int val) 
     {
         
@@ -144,6 +162,12 @@ struct SinglyLinkedList
         }
     }
     
+    /*
+    Add a node at the index of the SinglyLinkedList
+    @param int index the index to add the new node at
+    int val the value of the new node to add
+    @return void
+    */
     void addAtIndex(int index, int val) 
     {
 
@@ -191,6 +215,11 @@ struct SinglyLinkedList
         size++;
     }
     
+    /*
+    Delete a node in the SinglyLinkedList at the passed index 
+    @param int index the index to remove the node from
+    @return void 
+    */
     void deleteAtIndex(int index) 
     {
         
@@ -240,6 +269,11 @@ struct SinglyLinkedList
         size--;
     }
 
+    /*
+    Check if a node exists in the SinglyLinkedList
+    @param int val the value being searched in the SinglyLinkedList
+    @return true if the value exists in the SinglyLinkedList
+    */
     bool find(int val)
     {
 
