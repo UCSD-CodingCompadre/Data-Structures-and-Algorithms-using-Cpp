@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-class GraphAdjancenyMatrix
+class GraphAdjacencyMatrix
 {
 
 private:
@@ -52,7 +52,7 @@ public:
     @param int count the amount of nodes in the graph
     @return none
     */
-    GraphAdjancenyMatrix(int count);
+    GraphAdjacencyMatrix(int count);
 
     /*
     Create a directed edge in the adjancency matrix
@@ -80,9 +80,65 @@ public:
     void print();
 };
 
-GraphAdjancenyMatrix::GraphAdjancenyMatrix(int count)
+GraphAdjacencyMatrix::GraphAdjacencyMatrix(int count)
 {
 
-    count = count;
+    // Hold the amount of nodes
+    this->count = count;
+
+    // Create the matrix 
     matrix = std::vector<std::vector<int>>(count, std::vector<int>(count, 0));
+}
+
+void GraphAdjacencyMatrix::addDirectedEdge(int src, int dst, int cost)
+{
+
+    // Add the directed edge with the cost
+    matrix[src][dst] = cost;
+}
+
+void GraphAdjacencyMatrix::addUndirectedEdge(int src, int dst, int cost)
+{
+
+    // Add two directed edges with the cost
+    addDirectedEdge(src, dst, cost);
+    addDirectedEdge(dst, src, cost);
+}
+
+void GraphAdjacencyMatrix::print()
+{
+
+    // Loop through the rows
+    for(int i = 0; i < count; i++)
+    {
+
+        // Print the vertex
+        std::cout << "Vertex: " << i << " is connected to : ";
+
+        // Loop through the columns
+        for(int j = 0; j < count; j++)
+        {
+
+            // Check if the edge exists
+            if(matrix[i][j] != 0)
+            {
+
+                // Print the vertex and the cost 
+                std::cout << j << "(cost : " << matrix[i][j] << ") ";
+            }
+        }
+
+        // Print new line
+        std::cout << std::endl;
+    }
+}
+
+int main() {
+    // Example usage:
+    GraphAdjacencyMatrix graph(4);
+    graph.addDirectedEdge(0, 1, 2);
+    graph.addUndirectedEdge(1, 2, 3);
+    graph.print();
+
+    return 0;
 }
